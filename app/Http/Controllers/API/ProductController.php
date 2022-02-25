@@ -33,7 +33,6 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         return response()->json($product,200);
-//        return response()->json($product->timeslots()->with(['product'])->get());
     }
 
 

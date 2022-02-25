@@ -20,6 +20,7 @@ class AdditionalController extends Controller
             'description' => $request->description,
             'price' => $request->price,
             'image' => $request->image,
+            'language'=> $request->language,
         ]);
 
         return response()->json([
@@ -47,7 +48,7 @@ class AdditionalController extends Controller
     public function update(Request $request, Additional $additional)
     {
         $status = $additional->update(
-            $request->only(['name', 'description', 'price', 'image',])
+            $request->only(['name', 'description', 'price', 'image','language'])
         );
 
         return response()->json([

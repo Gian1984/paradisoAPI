@@ -46,7 +46,9 @@ class ReservationController extends Controller
     public function update(Request $request, Reservation $reservation )
     {
         $status = $reservation ->update(
-            $request->only(['user_id',
+            $request->only([
+
+                'user_id',
                 'startdate',
                 'finishdate',
                 'timeslot_id',
@@ -57,7 +59,9 @@ class ReservationController extends Controller
                 'cardBrand',
                 'lastFour',
                 'expire',
-                'language'])
+                'language'
+
+            ])
         );
 
         return response()->json([

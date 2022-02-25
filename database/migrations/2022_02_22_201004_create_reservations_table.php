@@ -15,7 +15,20 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id');
+            $table->string('startdate');
+            $table->string('finishdate');
+            $table->string( 'timeslot_id');
+            $table->string('guests');
+            $table->string('amount');
+            $table->string( 'product_id');
+            $table->string(  'transactionID');
+            $table->string('cardBrand');
+            $table->string('lastFour');
+            $table->string('expire');
+            $table->string('language');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

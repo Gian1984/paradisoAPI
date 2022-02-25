@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('end');
             $table->string('price');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
