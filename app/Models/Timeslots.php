@@ -13,4 +13,8 @@ class Timeslots extends Model
     protected $fillable = [
         'name', 'start','end', 'price',
     ];
+
+    public function timeslots(){
+        return $this->hasMany(Reservation::class);
+    }
 }

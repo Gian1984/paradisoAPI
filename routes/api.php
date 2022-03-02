@@ -27,3 +27,4 @@ Route::get('/timeslots', [TimeslotsController::class,'index']);
 Route::get('/additionals', [AdditionalController::class,'index']);
 Route::get('/reservations', [ReservationController::class,'index']);
 Route::get('/products', [ProductController::class,'index']);
+Route::post('/slotdisponibility', [ReservationController::class,'slotdisponibility']);

@@ -16,7 +16,9 @@ class Reservation extends Model
         'user_id',
         'startdate',
         'finishdate',
-        'timeslot_id',
+        'starttime',
+        'finishtime',
+        'slot_id',
         'guests',
         'amount',
         'product_id',
@@ -35,5 +37,10 @@ class Reservation extends Model
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function slot()
+    {
+        return $this->belongsTo(Timeslots::class, 'slot_id');
     }
 }

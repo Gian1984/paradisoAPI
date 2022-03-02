@@ -10,7 +10,7 @@ class ReservationController extends Controller
 {
     public function index()
     {
-        return response()->json(Reservation::all(),200);
+        return response()->json(Reservation::with(['product','user'])->get(),200);
     }
 
     public function store(Request $request)
@@ -19,7 +19,9 @@ class ReservationController extends Controller
             'user_id' => '1',
             'startdate' => $request->startdate,
             'finishdate' => $request->finishdate,
-            'timeslot_id' => $request->timeslot_id,
+            'starttime'=> $request->starttime,
+            'finishtime'=> $request->finishtime,
+            'slot_id' => $request->slot_id,
             'guests' => $request->guests,
             'amount' => $request->amount,
             'product_id' => $request->product_id,
@@ -51,7 +53,9 @@ class ReservationController extends Controller
                 'user_id',
                 'startdate',
                 'finishdate',
-                'timeslot_id',
+                'starttime',
+                'finishtime',
+                'slot_id',
                 'guests',
                 'amount',
                 'product_id',
@@ -78,5 +82,10 @@ class ReservationController extends Controller
             'status' => $status,
             'message' => $status ? 'Product Deleted!' : 'Error Deleting Product'
         ]);
+    }
+
+    public function slotdisponibility(Request $request)
+    {
+        return response()->json(Reservation::where('startdate', $request->date)->get(),200);
     }
 }

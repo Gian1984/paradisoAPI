@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('user_id');
             $table->string('startdate');
             $table->string('finishdate');
-            $table->string( 'timeslot_id');
+            $table->string('starttime');
+            $table->string(    'finishtime');
+            $table->string( 'slot_id');
             $table->string('guests');
             $table->string('amount');
             $table->string( 'product_id');

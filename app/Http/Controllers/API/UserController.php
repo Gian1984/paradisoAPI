@@ -40,6 +40,10 @@ class UserController extends Controller
             'lastname' => 'required',
             'email' => 'required|email|unique:users',
             'phone' => 'required',
+            'streetaddress' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'zip' => 'required',
             'password' => [
                 'required',
                 Password::min(8)
@@ -55,7 +59,7 @@ class UserController extends Controller
             return response()->json( $validator->errors(), 401);
         }
 
-        $data = $request->only(['firstname','lastname','email','phone', 'password','streetaddress','city','region','country','zip']);
+        $data = $request->only(['firstname','lastname','email','phone', 'password','streetaddress','city','country','zip']);
         $data['password'] = bcrypt($data['password']);
 
         $user = User::create($data);
