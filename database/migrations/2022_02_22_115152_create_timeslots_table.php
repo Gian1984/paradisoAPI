@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('start');
             $table->string('end');
             $table->string('price');
+            $table->string('available');
             $table->timestamps();
             $table->softDeletes();
         });

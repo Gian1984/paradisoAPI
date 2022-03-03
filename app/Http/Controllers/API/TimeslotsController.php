@@ -20,6 +20,7 @@ class TimeslotsController extends Controller
             'start' => $request->start,
             'end' => $request->end,
             'price' => $request->price,
+            'available'=>$request->available
         ]);
 
         return response()->json([
@@ -38,7 +39,7 @@ class TimeslotsController extends Controller
     public function update(Request $request, Timeslots $timeslots)
     {
         $status = $timeslots->update(
-            $request->only(['name', 'start', 'end', 'price'])
+            $request->only(['name', 'start', 'end', 'price','available'])
         );
 
         return response()->json([

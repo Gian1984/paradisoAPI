@@ -11,7 +11,7 @@ class Timeslots extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name', 'start','end', 'price',
+        'name', 'start','end', 'price','available'
     ];
 
     public function timeslots(){
