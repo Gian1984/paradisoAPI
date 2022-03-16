@@ -13,4 +13,9 @@ class Additional extends Model
     protected $fillable = [
         'name', 'price', 'description', 'image','language'
     ];
+
+    public function reservation()
+    {
+        return $this->belongsTo(Reservation::class);
+    }
 }

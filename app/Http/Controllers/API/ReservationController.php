@@ -22,6 +22,7 @@ class ReservationController extends Controller
             'starttime'=> $request->starttime,
             'finishtime'=> $request->finishtime,
             'slot_id' => $request->slot_id,
+            'fullday'=> $request->fullday,
             'guests' => $request->guests,
             'amount' => $request->amount,
             'product_id' => $request->product_id,
@@ -56,6 +57,7 @@ class ReservationController extends Controller
                 'starttime',
                 'finishtime',
                 'slot_id',
+                'fullday',
                 'guests',
                 'amount',
                 'product_id',
@@ -88,4 +90,20 @@ class ReservationController extends Controller
     {
         return response()->json(Reservation::where('startdate', $request->date)->get(),200);
     }
+
+    public function slotdisponibilityEnd(Request $request)
+    {
+        return response()->json(Reservation::where('finishdate', $request->date)->get(),200);
+    }
+
+    public function fulldays(Request $request)
+    {
+        return response()->json(Reservation::where('fullday', 1)->get(),200);
+    }
+
+    public function slots(Request $request)
+    {
+        return response()->json(Reservation::where('fullday', 0)->get(),200);
+    }
+
 }

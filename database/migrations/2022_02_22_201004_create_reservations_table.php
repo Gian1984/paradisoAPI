@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('starttime');
             $table->string(    'finishtime');
             $table->string( 'slot_id');
+            $table->tinyInteger('fullday');
             $table->string('guests');
             $table->string('amount');
             $table->string( 'product_id');

@@ -19,6 +19,7 @@ class Reservation extends Model
         'starttime',
         'finishtime',
         'slot_id',
+        'fullday',
         'guests',
         'amount',
         'product_id',
@@ -42,5 +43,9 @@ class Reservation extends Model
     public function slot()
     {
         return $this->belongsTo(Timeslots::class, 'slot_id');
+    }
+    public function additional()
+    {
+        return $this->hasMany(Additional::class);
     }
 }

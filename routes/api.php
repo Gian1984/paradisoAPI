@@ -28,3 +28,8 @@ Route::get('/additionals', [AdditionalController::class,'index']);
 Route::get('/reservations', [ReservationController::class,'index']);
 Route::get('/products', [ProductController::class,'index']);
 Route::post('/slotdisponibility', [ReservationController::class,'slotdisponibility']);
+Route::post('/slotdisponibilityEnd', [ReservationController::class,'slotdisponibilityEnd']);
+Route::post('/fulldays', [ReservationController::class,'fulldays']);
+Route::post('/slots', [ReservationController::class,'slots']);
+
+
