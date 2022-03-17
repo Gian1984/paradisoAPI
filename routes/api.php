@@ -31,5 +31,6 @@ Route::post('/slotdisponibility', [ReservationController::class,'slotdisponibili
 Route::post('/slotdisponibilityEnd', [ReservationController::class,'slotdisponibilityEnd']);
 Route::post('/fulldays', [ReservationController::class,'fulldays']);
 Route::post('/slots', [ReservationController::class,'slots']);
+Route::post('/reservations', [ReservationController::class,'store']);
 
 
