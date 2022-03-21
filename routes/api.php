@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\TimeslotsController;
@@ -32,7 +33,7 @@ Route::post('/slotdisponibility', [ReservationController::class,'slotdisponibili
 Route::post('/slotdisponibilityEnd', [ReservationController::class,'slotdisponibilityEnd']);
 Route::post('/fulldays', [ReservationController::class,'fulldays']);
 Route::post('/slots', [ReservationController::class,'slots']);
-Route::post('/extras', [ExtrasController::class,'store']);
+Route::post('/extras', [ExtrasController::class,'create']);
 Route::post('/reservations', [ReservationController::class,'store']);
 
 

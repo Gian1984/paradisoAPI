@@ -18,46 +18,23 @@ class ExtrasController extends Controller
 
     public function create(Request $request)
     {
+        $container = Extra::create([
+            'reservation_id' => $request->reservation_id,
+            'name' => $request->name,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+        ]);
 
+        $container->save();
 
-            foreach ($request as $data) {
-                $container = Extra::create([
-                    'reservation_id' => $data->reservation_id,
-                    'name' => $data->name,
-                    'price' => $data->price,
-                    'quantity' => $data->quantity,
-                ]);
-
-                $container->save();
-            }
-
-            return response()->json('Successfully added');
+        return response()->json('Successfully added');
     }
 
 
     public function store(Request $request)
 
     {
-
-
-        foreach( $request ->data as $data) {
-
-            $extra = New Extra([
-                'reservation_id' => $data['reservation_id'],
-                'name' => $data['name'],
-                'price' => $data['price'],
-                'quantity' => $data['quantity'],
-            ]);
-
-            $extra ->save();
-        }
-
-        return response()->json([
-            'status' => (bool)$extra,
-            'data' => $extra,
-            'message' => $extra ? 'Product Created!' : 'Error Creating Product'
-        ]);
-
+        //
     }
 
     /**
