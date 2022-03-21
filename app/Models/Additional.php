@@ -14,8 +14,4 @@ class Additional extends Model
         'name', 'price', 'description', 'image','language'
     ];
 
-    public function reservation()
-    {
-        return $this->belongsTo(Reservation::class);
-    }
 }

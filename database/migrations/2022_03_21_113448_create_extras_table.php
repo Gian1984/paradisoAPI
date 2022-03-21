@@ -13,16 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('timeslots', function (Blueprint $table) {
+        Schema::create('extras', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('reservation_id');
             $table->string('name');
-            $table->string('start');
-            $table->string('end');
+            $table->string('quantity');
             $table->string('price');
-            $table->string('value');
-            $table->string('available');
             $table->timestamps();
-            $table->softDeletes();
+            $table->foreign('reservation_id')
+                ->references('id')
+                ->on('reservations')
+                ->onDelete('cascade');
         });
     }
 
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('timeslots');
+        Schema::dropIfExists('extras');
     }
 };

@@ -6,6 +6,7 @@ use App\Http\Controllers\API\TimeslotsController;
 use App\Http\Controllers\API\AdditionalController;
 use App\Http\Controllers\API\ReservationController;
 use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\API\ExtrasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::post('/slotdisponibility', [ReservationController::class,'slotdisponibili
 Route::post('/slotdisponibilityEnd', [ReservationController::class,'slotdisponibilityEnd']);
 Route::post('/fulldays', [ReservationController::class,'fulldays']);
 Route::post('/slots', [ReservationController::class,'slots']);
+Route::post('/extras', [ExtrasController::class,'store']);
 Route::post('/reservations', [ReservationController::class,'store']);
 
 

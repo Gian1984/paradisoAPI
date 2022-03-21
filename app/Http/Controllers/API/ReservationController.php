@@ -13,7 +13,7 @@ class ReservationController extends Controller
 {
     public function index()
     {
-        return response()->json(Reservation::with(['product','user'])->get(),200);
+        return response()->json(Reservation::with(['product','user','extras'])->get(),200);
     }
 
     public function store(Request $request)
@@ -91,6 +91,8 @@ class ReservationController extends Controller
                     $message->subject('Récapitulatif de la commande');
 
                 });
+
+                return $reservation;
 
             }
 

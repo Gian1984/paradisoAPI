@@ -44,8 +44,8 @@ class Reservation extends Model
     {
         return $this->belongsTo(Timeslots::class, 'slot_id');
     }
-    public function additional()
+    public function extras()
     {
-        return $this->hasMany(Additional::class);
+        return $this->hasMany(Extra::class);
     }
 }

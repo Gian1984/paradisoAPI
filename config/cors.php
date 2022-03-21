@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['http://localhost:8080', 'https://paradisopark.com','https://www.paradisopark.com'],
 
     'allowed_origins_patterns' => [],
 
