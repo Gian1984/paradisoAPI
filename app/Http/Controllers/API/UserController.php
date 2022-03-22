@@ -78,7 +78,7 @@ class UserController extends Controller
 
     public function showOrders(User $user)
     {
-        return response()->json($user->orders()->with(['product'])->get());
+        return response()->json($user->orders()->with(['product','user','extras'])->get());
     }
 
     public function update(Request $request, User $user)
