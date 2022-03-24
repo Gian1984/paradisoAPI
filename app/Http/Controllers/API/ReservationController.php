@@ -101,6 +101,78 @@ class ReservationController extends Controller
         }
     }
 
+
+    public function create(Request $request)
+    {
+
+//        $user = User::find(Auth::id());
+
+        $user = User::find(1);
+
+            $reservation = Reservation::create([
+                'user_id' => '1',
+                'startdate' => $request->startdate,
+                'finishdate' => $request->finishdate,
+                'starttime'=> $request->starttime,
+                'finishtime'=> $request->finishtime,
+                'slot_id' => $request->slot_id,
+                'fullday'=> $request->fullday,
+                'guests' => $request->guests,
+                'amount' => $request->amount,
+                'product_id' => $request->product_id,
+                'transactionID' => $request->transactionID,
+                'cardBrand' => $request->cardBrand,
+                'lastFour' => $request->lastFour,
+                'expire' => $request->expire,
+                'language' => $request->language
+            ]);
+
+//            $user = Auth::user();
+
+
+            $reservation = Reservation::where('transactionID', $request->transactionID)->first();
+
+            if ( $reservation->language == 'FR') {
+
+                Mail::send('email.orderSuccessFR', ['order' => $reservation, 'user' => $user], function ($message) use ($request) {
+
+
+                    $reservation = Reservation::where('transactionID', $request->transactionID)->first();
+
+//                    $message->to(Auth::user()->email);
+                    $message->to('gl.tiengo@gmail.com');
+                    $message->to('gl.tiengo@gmail.com');
+
+                    $message->subject('Récapitulatif de la commande');
+
+                });
+
+                return $reservation;
+
+            } else {
+
+
+                Mail::send('email.orderSuccessEn', ['order' => $reservation, 'user' => $user], function ($message) use ($request) {
+
+
+                    $reservation = Reservation::where('transactionID', $request->transactionID)->first();
+
+                    //                    $message->to(Auth::user()->email);
+                    $message->to('gl.tiengo@gmail.com');
+                    $message->to('gl.tiengo@gmail.com');
+
+                    $message->subject('Récapitulatif de la commande');
+
+                });
+
+                return $reservation;
+
+            }
+
+    }
+
+
+
     public function show(Reservation $reservation )
     {
         return response()->json($reservation ,200);
