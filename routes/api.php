@@ -9,6 +9,9 @@ use App\Http\Controllers\API\ReservationController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\ExtrasController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\SpecialdateController;
+use App\Http\Controllers\API\GroupController;
+use App\Http\Controllers\API\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +40,10 @@ Route::get('users/{user}/orders', [UserController::class, 'showOrders']);
 Route::post('/extras', [ExtrasController::class,'create']);
 Route::post('/reservations', [ReservationController::class,'store']);
 Route::resource('/reservations', ReservationController::class);
+Route::post('/upload-file', [AdditionalController::class,'uploadFile']);
+Route::resource('/additionals/', AdditionalController::class);
+Route::resource('/spcialdays', SpecialdateController::class);
+Route::resource('/groups', GroupController::class);
+Route::resource('/checkouts', CheckoutController::class);
 
 
