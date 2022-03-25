@@ -19,6 +19,8 @@ class CheckoutController extends Controller
             'slot' => $request->slot,
             'name' => $request->name,
             'price' => $request->price,
+            'start' => $request->start,
+            'end' => $request->end,
         ]);
 
         return response()->json([
@@ -34,6 +36,8 @@ class CheckoutController extends Controller
             'slot' => $request->slot,
             'name' => $request->name,
             'price' => $request->price,
+            'start' => $request->start,
+            'end' => $request->end,
         ]);
 
         return response()->json([
@@ -52,7 +56,7 @@ class CheckoutController extends Controller
     public function update(Request $request, Checkout $checkout)
     {
         $status = $checkout->update(
-            $request->only(['slot','name', 'price'])
+            $request->only(['slot','name', 'price','start','end'])
         );
 
         return response()->json([

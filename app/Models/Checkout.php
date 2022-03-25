@@ -11,6 +11,6 @@ class Checkout extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'slot', 'name', 'price'
+        'slot', 'name', 'price','start','end'
     ];
 }

@@ -47,5 +47,7 @@ Route::resource('/spcialdays', SpecialdateController::class);
 Route::resource('/groups', GroupController::class);
 Route::resource('/checkouts', CheckoutController::class);
 
+Route::post('/fulldaysadmin', [ReservationController::class,'fulldaysadmin']);
+
 
 

@@ -130,7 +130,7 @@ class ReservationController extends Controller
 //            $user = Auth::user();
 
 
-            $reservation = Reservation::where('transactionID', $request->transactionID)->first();
+            $reservation = Reservation::where('user_id', $request->user_id)->latest()->first();
 
             if ( $reservation->language == 'FR') {
 
@@ -155,7 +155,7 @@ class ReservationController extends Controller
                 Mail::send('email.orderSuccessEn', ['order' => $reservation, 'user' => $user], function ($message) use ($request) {
 
 
-                    $reservation = Reservation::where('transactionID', $request->transactionID)->first();
+                    $reservation = Reservation::where('user_id', $request->user_id)->latest()->first();
 
                     //                    $message->to(Auth::user()->email);
                     $message->to('gl.tiengo@gmail.com');
@@ -232,6 +232,11 @@ class ReservationController extends Controller
     public function fulldays(Request $request)
     {
         return response()->json(Reservation::where('fullday', 1)->get(),200);
+    }
+
+    public function fulldaysadmin(Request $request)
+    {
+        return response()->json(Reservation::where('fullday', 1)->with(['product','user','extras'])->get(),200);
     }
 
     public function slots(Request $request)

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('slot');
             $table->string('name');
             $table->string('price');
+            $table->string('start');
+            $table->string('end');
             $table->timestamps();
             $table->softDeletes();
         });
