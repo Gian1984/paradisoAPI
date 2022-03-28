@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('fromDate');
             $table->string('toDate');
+            $table->string('fromMonth');
+            $table->string('toMonth');
             $table->timestamps();
             $table->softDeletes();
         });

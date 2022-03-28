@@ -20,12 +20,15 @@ class SpecialdateController extends Controller
             'name' => $request->name,
             'fromDate' => $request->fromDate,
             'toDate' => $request->toDate,
+            'fromMonth' => $request->fromMonth,
+            'toMonth' => $request->toMonth,
+
         ]);
 
         return response()->json([
             'status' => (bool) $specialdate,
             'data'   => $specialdate,
-            'message' => $specialdate ? 'Product Created!' : 'Error Creating Product'
+            'message' => $specialdate ? 'Specialdate Created!' : 'Error Creating Specialdate'
         ]);
     }
 
@@ -35,12 +38,14 @@ class SpecialdateController extends Controller
             'name' => $request->name,
             'fromDate' => $request->fromDate,
             'toDate' => $request->toDate,
+            'fromMonth' => $request->fromMonth,
+            'toMonth' => $request->toMonth,
         ]);
 
         return response()->json([
             'status' => (bool) $specialdate,
             'data'   => $specialdate,
-            'message' => $specialdate ? 'Product Created!' : 'Error Creating Product'
+            'message' => $specialdate ? 'Specialdate Created!' : 'Error Creating Specialdate'
         ]);
     }
 
@@ -53,22 +58,22 @@ class SpecialdateController extends Controller
     public function update(Request $request, Specialdate $specialdate)
     {
         $status = $specialdate->update(
-            $request->only(['value','name','discount'])
+            $request->only(['name', 'fromDate', 'toDate', 'fromMonth', 'toMonth'])
         );
 
         return response()->json([
             'status' => $status,
-            'message' => $status ? 'Product Updated!' : 'Error Updating Product'
+            'message' => $status ? 'Specialdate Updated!' : 'Error Updating Specialdate'
         ]);
     }
 
-    public function destroy(Specialdate $specialdate)
+    public function destroy($id)
     {
-        $status = $specialdate->delete();
+        $status = Specialdate::where('id', $id)->delete();
 
         return response()->json([
             'status' => $status,
-            'message' => $status ? 'Product Deleted!' : 'Error Deleting Product'
+            'message' => $status ? 'Specialdate Deleted!' : 'Error Deleting Specialdate'
         ]);
     }
 }

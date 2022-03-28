@@ -11,6 +11,6 @@ class Specialdate extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name', 'fromDate','toDate'
+        'name', 'fromDate', 'toDate', 'fromMonth', 'toMonth'
     ];
 }
