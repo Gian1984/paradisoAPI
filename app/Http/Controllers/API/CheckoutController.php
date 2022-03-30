@@ -26,7 +26,7 @@ class CheckoutController extends Controller
         return response()->json([
             'status' => (bool) $checkout,
             'data'   => $checkout,
-            'message' => $checkout ? 'Product Created!' : 'Error Creating Product'
+            'message' => $checkout ? 'Checkout Created!' : 'Error Creating Checkout'
         ]);
     }
 
@@ -43,7 +43,7 @@ class CheckoutController extends Controller
         return response()->json([
             'status' => (bool) $checkout,
             'data'   => $checkout,
-            'message' => $checkout ? 'Product Created!' : 'Error Creating Product'
+            'message' => $checkout ? 'Checkout Created!' : 'Error Creating Checkout'
         ]);
     }
 
@@ -53,25 +53,25 @@ class CheckoutController extends Controller
     }
 
 
-    public function update(Request $request, Checkout $checkout)
+    public function update(Request $request, $id)
     {
-        $status = $checkout->update(
-            $request->only(['slot','name', 'price','start','end'])
+        $status = Checkout::where('id', $id)->update(
+        $request->only(['slot','name', 'price', 'start', 'end'])
         );
 
         return response()->json([
             'status' => $status,
-            'message' => $status ? 'Product Updated!' : 'Error Updating Product'
+            'message' => $status ? 'Checkout Updated!' : 'Error Updating Checkout'
         ]);
     }
 
-    public function destroy(Checkout $checkout)
+    public function destroy($id)
     {
-        $status = $checkout->delete();
+        $status = Checkout::where('id', $id)->delete();
 
         return response()->json([
             'status' => $status,
-            'message' => $status ? 'Product Deleted!' : 'Error Deleting Product'
+            'message' => $status ? 'Checkout Deleted!' : 'Error Deleting Checkout'
         ]);
     }
 }

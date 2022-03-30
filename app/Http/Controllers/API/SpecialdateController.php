@@ -55,16 +55,18 @@ class SpecialdateController extends Controller
     }
 
 
-    public function update(Request $request, Specialdate $specialdate)
+    public function update(Request $request, $id )
     {
-        $status = $specialdate->update(
+
+        $status = Specialdate::where('id', $id)->update(
             $request->only(['name', 'fromDate', 'toDate', 'fromMonth', 'toMonth'])
         );
 
         return response()->json([
             'status' => $status,
-            'message' => $status ? 'Specialdate Updated!' : 'Error Updating Specialdate'
+            'message' => $status ? 'Specialdate update!' : 'Error Updating Specialdate'
         ]);
+
     }
 
     public function destroy($id)
