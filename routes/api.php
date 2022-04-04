@@ -13,20 +13,16 @@ use App\Http\Controllers\API\SpecialdateController;
 use App\Http\Controllers\API\GroupController;
 use App\Http\Controllers\API\CheckoutController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::post('register', [UserController::class, 'register']);
+Route::post('login', [UserController::class, 'login']);
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm']);
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm']);
 
 
 Route::get('/timeslots', [TimeslotsController::class,'index']);
