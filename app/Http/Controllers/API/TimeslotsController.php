@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Specialdate;
 use App\Models\Timeslots;
 use Illuminate\Http\Request;
 
@@ -37,25 +38,25 @@ class TimeslotsController extends Controller
     }
 
 
-    public function update(Request $request, Timeslots $timeslots)
+    public function update(Request $request, $id)
     {
-        $status = $timeslots->update(
-            $request->only(['name', 'start', 'end', 'price','value','available'])
+        $status = Timeslots::where('id', $id)->update(
+            $request->only(['name', 'start', 'end', 'price', 'value', 'available'])
         );
 
         return response()->json([
             'status' => $status,
-            'message' => $status ? 'Product Updated!' : 'Error Updating Product'
+            'message' => $status ? 'Specialdate update!' : 'Error Updating Specialdate'
         ]);
     }
 
-    public function destroy(Timeslots $timeslots)
+    public function destroy($id)
     {
-        $status = $timeslots->delete();
+        $status = Timeslots::where('id', $id)->delete();
 
         return response()->json([
             'status' => $status,
-            'message' => $status ? 'Product Deleted!' : 'Error Deleting Product'
+            'message' => $status ? 'Specialdate Deleted!' : 'Error Deleting Specialdate'
         ]);
     }
 }

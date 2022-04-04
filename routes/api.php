@@ -46,6 +46,9 @@ Route::resource('/additionals/', AdditionalController::class);
 Route::resource('/spcialdays', SpecialdateController::class);
 Route::resource('/groups', GroupController::class);
 Route::resource('/checkouts', CheckoutController::class);
+Route::resource('/rooms', ProductController::class);
+Route::resource('/groups', GroupController::class);
+Route::resource('/timeslots', TimeslotsController::class);
 
 Route::resource('/additionals', AdditionalController::class);
 
