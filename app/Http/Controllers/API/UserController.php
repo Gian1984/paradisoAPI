@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 
+
 class UserController extends Controller
 {
     public function index()
@@ -26,6 +27,7 @@ class UserController extends Controller
             $status = 200;
             $response = [
                 'user' => Auth::user(),
+                'check' => Auth::check(),
                 'token' => Auth::user()->createToken('bigStore')->accessToken,
             ];
         }

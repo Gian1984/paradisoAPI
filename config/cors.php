@@ -15,20 +15,29 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+//    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+//
+//    'allowed_methods' => ['POST', 'GET', 'DELETE', 'PUT', '*'],
+//
+//    'allowed_origins' => ['http://localhost:8080', 'https://paradisopark.com','https://www.paradisopark.com'],
+//
+//    'allowed_origins_patterns' => [],
+//
+//    'allowed_headers' => ['Content-Type, X-Auth-Token, Origin, Access-Control-Allow-Origin'],
+//
+//    'exposed_headers' => [],
+//
+//    'max_age' => 0,
+//
+//    'supports_credentials' => false,
 
-    'allowed_methods' => ['POST', 'GET', 'DELETE', 'PUT', '*'],
 
-    'allowed_origins' => ['http://localhost:8080', 'https://paradisopark.com','https://www.paradisopark.com'],
-
-    'allowed_origins_patterns' => [],
-
-    'allowed_headers' => ['Content-Type, X-Auth-Token, Origin, Access-Control-Allow-Origin'],
-
-    'exposed_headers' => [],
-
-    'max_age' => 0,
-
-    'supports_credentials' => false,
+    'supportsCredentials' => true,
+    'allowedOrigins' => ['*'],
+    'allowedOriginsPatterns' => [],
+    'allowedHeaders' => ['*'],
+    'allowedMethods' => ['*'],
+    'exposedHeaders' => [],
+    'maxAge' => 0,
 
 ];

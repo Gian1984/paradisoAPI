@@ -20,97 +20,91 @@ class ReservationController extends Controller
     {
 
 
-//        $user = User::find(Auth::id());
+            $user = User::find($request->user_id);
 
-        $user = User::find(1);
+            try {
 
-        try {
+                $payment = $user->charge(
+                    $request->input('amount'),
+                    $request->input('payment_method_id'),
+                );
 
-            $payment = $user->charge(
-                $request->input('amount'),
-                $request->input('payment_method_id'),
-//                ["receipt_email" => Auth::user()->email,]
-            );
-
-            $payment = $payment->asStripePaymentIntent();
+                $payment = $payment->asStripePaymentIntent();
 
 
+                $reservation = Reservation::create([
+                    'user_id' => $request->user_id,
+                    'startdate' => $request->startdate,
+                    'finishdate' => $request->finishdate,
+                    'starttime' => $request->starttime,
+                    'finishtime' => $request->finishtime,
+                    'slot_id' => $request->slot_id,
+                    'fullday' => $request->fullday,
+                    'guests' => $request->guests,
+                    'amount' => $request->amount,
+                    'product_id' => $request->product_id,
+                    'transactionID' => $request->transactionID,
+                    'cardBrand' => $request->cardBrand,
+                    'lastFour' => $request->lastFour,
+                    'expire' => $request->expire,
+                    'language' => $request->language
+                ]);
 
-            $reservation = Reservation::create([
-                'user_id' => '1',
-                'startdate' => $request->startdate,
-                'finishdate' => $request->finishdate,
-                'starttime'=> $request->starttime,
-                'finishtime'=> $request->finishtime,
-                'slot_id' => $request->slot_id,
-                'fullday'=> $request->fullday,
-                'guests' => $request->guests,
-                'amount' => $request->amount,
-                'product_id' => $request->product_id,
-                'transactionID' => $request->transactionID,
-                'cardBrand' => $request->cardBrand,
-                'lastFour' => $request->lastFour,
-                'expire' => $request->expire,
-                'language' => $request->language
-            ]);
+                $user = User::find($request->user_id);
 
-//            $user = Auth::user();
-            $user = User::find(1);
+                $reservation = Reservation::where('transactionID', $request->transactionID)->first();
 
-            $reservation = Reservation::where('transactionID', $request->transactionID)->first();
+                if ($reservation->language == 'FR') {
 
-            if ( $reservation->language == 'FR') {
-
-                Mail::send('email.orderSuccess', ['order' => $reservation, 'user' => $user], function ($message) use ($request) {
+                    Mail::send('email.orderSuccessFR', ['order' => $reservation, 'user' => $user], function ($message) use ($request) {
 
 
-                    $reservation = Reservation::where('transactionID', $request->transactionID)->first();
+                        $reservation = Reservation::where('transactionID', $request->transactionID)->first();
 
-//                    $message->to(Auth::user()->email);
-                    $message->to('gl.tiengo@gmail.com');
-                    $message->to('gl.tiengo@gmail.com');
+                        $user = User::where('id', $request->user_id)->first();
 
-                    $message->subject('Récapitulatif de la commande');
+                        $message->to($user->email);
+                        $message->to('gl.tiengo@gmail.com');
 
-                });
+                        $message->subject('Récapitulatif de la commande');
 
-                return $reservation;
+                    });
 
-            } else {
+                    return $reservation;
 
-
-                Mail::send('email.orderSuccessEn', ['order' => $reservation, 'user' => $user], function ($message) use ($request) {
+                } else {
 
 
-                    $reservation = Reservation::where('transactionID', $request->transactionID)->first();
+                    Mail::send('email.orderSuccessEn', ['order' => $reservation, 'user' => $user], function ($message) use ($request) {
 
-                    //                    $message->to(Auth::user()->email);
-                    $message->to('gl.tiengo@gmail.com');
-                    $message->to('gl.tiengo@gmail.com');
 
-                    $message->subject('Récapitulatif de la commande');
+                        $reservation = Reservation::where('transactionID', $request->transactionID)->first();
 
-                });
+//                        $message->to(Auth::user()->email);
+                        $message->to('gl.tiengo@gmail.com');
 
-                return $reservation;
+                        $message->subject('Récapitulatif de la commande');
 
+                    });
+
+                    return $reservation;
+
+                }
+
+            } catch (\Exception $e) {
+                return response()->json(['message' => $e->getMessage()], 500);
             }
 
-        } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage()], 500);
-        }
     }
 
 
     public function create(Request $request)
     {
 
-//        $user = User::find(Auth::id());
-
-        $user = User::find(1);
+        $user = User::find($request->user_id);
 
             $reservation = Reservation::create([
-                'user_id' => '1',
+                'user_id' => $request->user_id,
                 'startdate' => $request->startdate,
                 'finishdate' => $request->finishdate,
                 'starttime'=> $request->starttime,
@@ -127,7 +121,7 @@ class ReservationController extends Controller
                 'language' => $request->language
             ]);
 
-//            $user = Auth::user();
+
 
 
             $reservation = Reservation::where('user_id', $request->user_id)->latest()->first();
@@ -139,8 +133,8 @@ class ReservationController extends Controller
 
                     $reservation = Reservation::where('transactionID', $request->transactionID)->first();
 
-//                    $message->to(Auth::user()->email);
-                    $message->to('gl.tiengo@gmail.com');
+                    $user = User::where('id', $request->user_id)->first();
+                    $message->to($user->email);
                     $message->to('gl.tiengo@gmail.com');
 
                     $message->subject('Récapitulatif de la commande');
@@ -157,8 +151,9 @@ class ReservationController extends Controller
 
                     $reservation = Reservation::where('user_id', $request->user_id)->latest()->first();
 
-                    //                    $message->to(Auth::user()->email);
-                    $message->to('gl.tiengo@gmail.com');
+                    $user = User::where('id', $request->user_id)->first();
+
+                    $message->to($user->email);
                     $message->to('gl.tiengo@gmail.com');
 
                     $message->subject('Récapitulatif de la commande');
