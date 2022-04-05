@@ -12,6 +12,8 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\SpecialdateController;
 use App\Http\Controllers\API\GroupController;
 use App\Http\Controllers\API\CheckoutController;
+use App\Http\Controllers\API\ForgotPasswordController;
+
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
