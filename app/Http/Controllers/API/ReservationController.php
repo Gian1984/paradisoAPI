@@ -236,7 +236,7 @@ class ReservationController extends Controller
 
     public function slots(Request $request)
     {
-        return response()->json(Reservation::where('fullday', 0)->get(),200);
+        return response()->json(Reservation::where('fullday', 0)->with(['product','user','extras'])->get(),200);
     }
 
 }
