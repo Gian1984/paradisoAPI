@@ -51,6 +51,8 @@ Route::resource('/timeslots', TimeslotsController::class);
 Route::resource('/additionals', AdditionalController::class);
 
 Route::post('/fulldaysadmin', [ReservationController::class,'fulldaysadmin']);
+Route::post('/verifytimeslots', [ReservationController::class,'verifytimeslots']);
+
 Route::get('users/{user}/orders', [UserController::class, 'showOrders']);
 
 Route::group(['middleware' => 'auth:api'], function() {

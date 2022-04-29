@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('reservation_id');
             $table->string('name');
             $table->string('quantity');
-            $table->string('price');
+            $table->bigInteger('price');
             $table->timestamps();
             $table->foreign('reservation_id')
                 ->references('id')

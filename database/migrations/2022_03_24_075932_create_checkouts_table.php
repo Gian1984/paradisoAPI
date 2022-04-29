@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('slot');
             $table->string('name');
-            $table->string('price');
+            $table->bigInteger('price');
             $table->string('start');
             $table->string('end');
             $table->timestamps();

@@ -239,4 +239,20 @@ class ReservationController extends Controller
         return response()->json(Reservation::where('fullday', 0)->with(['product','user','extras'])->get(),200);
     }
 
+    public function verifyfulldays(Request $request)
+    {
+        return response()->json(Reservation::where('fullday', 1)
+            ->where('startdate', $request->startdate )
+            ->where('finishdate', $request->finishdate)
+            ->get(),200);
+    }
+    public function verifytimeslots(Request $request)
+    {
+        return response()->json(Reservation::where('fullday', 0)
+            ->where('startdate', $request->startdate)
+            ->where('finishdate', $request->finishdate)
+            ->where('slot_id', $request->slot_id)
+            ->get(),200);
+    }
+
 }

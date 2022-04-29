@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string( 'slot_id');
             $table->tinyInteger('fullday');
             $table->string('guests');
-            $table->string('amount');
+            $table->bigInteger('amount');
             $table->string( 'product_id');
             $table->string(  'transactionID');
             $table->string('cardBrand');

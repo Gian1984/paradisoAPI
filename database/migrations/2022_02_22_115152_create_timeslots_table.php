@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('start');
             $table->string('end');
-            $table->string('price');
+            $table->bigInteger('price');
             $table->string('value');
             $table->string('available');
             $table->timestamps();
