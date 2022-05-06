@@ -241,10 +241,8 @@ class ReservationController extends Controller
 
     public function verifyfulldays(Request $request)
     {
-        return response()->json(Reservation::where('fullday', 1)
-            ->where('startdate', $request->startdate )
-            ->where('finishdate', $request->finishdate)
-            ->get(),200);
+        return response()->json(Reservation::where('fullday', 1)->get());
+
     }
     public function verifytimeslots(Request $request)
     {

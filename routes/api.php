@@ -52,6 +52,8 @@ Route::resource('/additionals', AdditionalController::class);
 
 Route::post('/fulldaysadmin', [ReservationController::class,'fulldaysadmin']);
 Route::post('/verifytimeslots', [ReservationController::class,'verifytimeslots']);
+Route::post('/verifyfulldays', [ReservationController::class,'verifyfulldays']);
+
 
 Route::get('users/{user}/orders', [UserController::class, 'showOrders']);
 
